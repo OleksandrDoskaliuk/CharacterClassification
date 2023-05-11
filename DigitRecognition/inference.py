@@ -20,8 +20,6 @@ def main():
 
     infer_digits(model, img_dir, files)
 
-    print(files)
-
 
 def def_directory_path_and_model_name_from_cli():
     parser = argparse.ArgumentParser(
