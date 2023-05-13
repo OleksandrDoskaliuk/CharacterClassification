@@ -158,7 +158,7 @@ def define_average_background_color_for_images(images):
 
 
 def resize_img(img):
-    height, width, _ = img.shape
+    height, width = img.shape
 
     # Check if image is already 28x28
     if height == IMAGE_HEIGHT and width == IMAGE_HEIGHT:
