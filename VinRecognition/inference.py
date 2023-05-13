@@ -14,6 +14,8 @@ valid_img_extensions = {'.png', '.jpg', '.jpeg'}
 
 NUMBER_OF_IMAGES_TO_DEFINE_BACKGROUND = 10
 
+IMAGE_WIDTH = IMAGE_HEIGHT = 28
+
 # MAPPER VIN. Letters I, O and Q are EXCLUDED
 mapper = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'J', 9: 'K', 10: 'L',
           11: 'M', 12: 'N', 13: 'P', 14: 'R', 15: 'S', 16: 'T', 17: 'U', 18: 'V', 19: 'W',
@@ -105,6 +107,7 @@ def load_images_with_path(directory, file_names: list[str]) -> list[(str, Any)]:
         try:
             file_path = os.path.join(directory, file_name)
             img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
+            img = resize_img(img)
             images_with_path.append((img, file_path))
         except Exception as e:
             logging.exception(f"Exception loading file: {file_name} in directory: {directory}")
@@ -152,6 +155,19 @@ def img_to_np_array(img):
 
 def define_average_background_color_for_images(images):
     return np.mean([np.mean(img) for img in images])
+
+
+def resize_img(img):
+    height, width, _ = img.shape
+
+    # Check if image is already 28x28
+    if height == IMAGE_HEIGHT and width == IMAGE_HEIGHT:
+        resized_img = img
+    else:
+        # Resize image to 28x28
+        resized_img = cv2.resize(img, (28, 28))
+
+    return resized_img
 
 
 if __name__ == '__main__':
