@@ -7,6 +7,8 @@ import logging
 import os
 import cv2
 
+tf.keras.utils.disable_interactive_logging()
+
 default_model_name = 'model.h5'
 valid_img_extensions = {'.png', '.jpg', '.jpeg'}
 
