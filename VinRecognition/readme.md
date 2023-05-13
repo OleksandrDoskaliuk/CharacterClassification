@@ -1,3 +1,9 @@
+---
+## TITLE: CNN FOR VIN-CODE RECOGNITION
+## AUTHOR: [OLEKSANDR DOSKALIUK](https://github.com/OleksandrDoskaliuk)
+DATE: 2023-05-13
+---
+
 # VIN-CODE RECOGNITION
 
 VIN-code recognition is a neural network that can classify small squared black&white image (VIN character boxes) with single handwritten character on it.
@@ -24,9 +30,11 @@ Also, the software is designed to infer the background color for the provided im
 ## Usage
 ### To run the inference with Docker:
 
-1. To build the Docker image, navigate to the directory containing the Dockerfile and run:
+1. Change directory to the VinRecognition:
+    `cd [absolute_path]/VinRecognition`
+2. To build the Docker image, navigate to the directory containing the Dockerfile and run:
     `docker build -t vin-rec-image .`
-2. To work with external folder that contains images the command has to include external folder mounting. To run the inference script use next command:
+3. To work with external folder that contains images the command has to include external folder mounting. To run the inference script use next command:
     `docker run -it --rm -v [absolute path to folder with images]:/app/data vin-rec-image python inference.py --input /app/data`
 
 ### To run the inference in python venv:
